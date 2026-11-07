@@ -1,0 +1,18 @@
+=== logs/app.log (dernieres 14 lignes) ===
+Hibernate: select count(*) from livraison l1_0
+Hibernate: insert into livraison (composant,duree_secondes,environnement,horodatage,statut,version,id) values (?,?,?,?,?,?,default)
+Hibernate: insert into livraison (composant,duree_secondes,environnement,horodatage,statut,version,id) values (?,?,?,?,?,?,default)
+Hibernate: insert into livraison (composant,duree_secondes,environnement,horodatage,statut,version,id) values (?,?,?,?,?,?,default)
+Hibernate: insert into livraison (composant,duree_secondes,environnement,horodatage,statut,version,id) values (?,?,?,?,?,?,default)
+Hibernate: insert into livraison (composant,duree_secondes,environnement,horodatage,statut,version,id) values (?,?,?,?,?,?,default)
+2026-11-07T17:06:48.119Z  WARN 10952 --- [pilotage-deploiement] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-11-07T17:06:48.160Z  INFO 10952 --- [pilotage-deploiement] [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2026-11-07T17:06:48.795Z  INFO 10952 --- [pilotage-deploiement] [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoints beneath base path '/actuator'
+2026-11-07T17:06:48.877Z  INFO 10952 --- [pilotage-deploiement] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8110 (http) with context path '/'
+2026-11-07T17:06:48.889Z  INFO 10952 --- [pilotage-deploiement] [           main] m.u.tp14.registre.PilotageApplication    : Started PilotageApplication in 6.61 seconds (process running for 7.124)
+2026-11-07T17:06:49.024Z  INFO 10952 --- [pilotage-deploiement] [nio-8110-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-11-07T17:06:49.025Z  INFO 10952 --- [pilotage-deploiement] [nio-8110-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-11-07T17:06:49.026Z  INFO 10952 --- [pilotage-deploiement] [nio-8110-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+
+=== fichiers de PID suivis ===
+  logs/app.pid -> PID 1722 actif

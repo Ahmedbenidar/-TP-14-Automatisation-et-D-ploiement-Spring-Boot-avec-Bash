@@ -1,0 +1,54 @@
+### arborescence du projet
+.
+./docs
+./docs/captures
+./docs/captures/01-arborescence.txt
+./docs/captures/02-sante.txt
+./docs/captures/03-journaux.txt
+./docs/captures/04-api-livraisons.txt
+./docs/captures/05-api-synthese.txt
+./docs/captures/06-sauvegarde.txt
+./docs/screenshots
+./docs/screenshots/01-application-demarree.png
+./docs/screenshots/02-api-livraisons.png
+./docs/screenshots/03-actuator-health.png
+./docs/screenshots/04-scripts-sante-journaux.png
+./docs/screenshots/05-cycle-deploiement.png
+./docs/screenshots/06-sauvegarde-journaux.png
+./pom.xml
+./scripts
+./scripts/arreter.sh
+./scripts/demarrer.sh
+./scripts/deployer.sh
+./scripts/journaux.sh
+./scripts/sante.sh
+./scripts/sauvegarde-journaux.sh
+./src
+./src/main
+./src/main/java
+./src/main/java/ma
+./src/main/java/ma/usmba
+./src/main/java/ma/usmba/tp14
+./src/main/java/ma/usmba/tp14/registre
+./src/main/java/ma/usmba/tp14/registre/PilotageApplication.java
+./src/main/java/ma/usmba/tp14/registre/depot
+./src/main/java/ma/usmba/tp14/registre/depot/LivraisonDepot.java
+./src/main/java/ma/usmba/tp14/registre/modele
+./src/main/java/ma/usmba/tp14/registre/modele/Livraison.java
+./src/main/java/ma/usmba/tp14/registre/service
+./src/main/java/ma/usmba/tp14/registre/service/LivraisonService.java
+./src/main/java/ma/usmba/tp14/registre/web
+./src/main/java/ma/usmba/tp14/registre/web/RegistreController.java
+./src/main/resources
+./src/main/resources/application.properties
+./src/main/resources/static
+./src/main/resources/static/index.html
+
+### droits des scripts
+total 18
+-rwxr-xr-x 1 dell 197609 2100 Nov  7 17:25 arreter.sh
+-rwxr-xr-x 1 dell 197609 1298 Nov  7 17:03 demarrer.sh
+-rwxr-xr-x 1 dell 197609 1621 Nov  7 17:03 deployer.sh
+-rwxr-xr-x 1 dell 197609  923 Nov  7 17:06 journaux.sh
+-rwxr-xr-x 1 dell 197609  606 Nov  7 17:03 sante.sh
+-rwxr-xr-x 1 dell 197609  464 Nov  7 17:03 sauvegarde-journaux.sh

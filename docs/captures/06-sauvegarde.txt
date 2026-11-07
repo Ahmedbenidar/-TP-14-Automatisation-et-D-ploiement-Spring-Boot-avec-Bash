@@ -1,0 +1,11 @@
+Archive creee : archives/journaux_20261107-170705.tar.gz (4,0K)
+Contenu :
+  - logs/
+  - logs/app.log
+  - logs/app.pid
+  - logs/deploy.log
+total 12
+drwxr-xr-x 1 dell 197609    0 nov.   7 17:07 .
+drwxr-xr-x 1 dell 197609    0 nov.   7 17:07 ..
+-rw-r--r-- 1 dell 197609 2007 nov.   7 17:05 journaux_20261107-170556.tar.gz
+-rw-r--r-- 1 dell 197609 2742 nov.   7 17:07 journaux_20261107-170705.tar.gz

@@ -1,0 +1,6 @@
+{
+  "projet": "pilotage-deploiement",
+  "livraisonsEnregistrees": 5,
+  "livraisonsReussies": 4,
+  "dureeMoyenneSecondes": 96
+}

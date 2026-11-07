@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pilotage des déploiements</title>
+    <style>
+        :root {
+            --fond: #0f172a;
+            --carte: #1b2740;
+            --texte: #e7edf7;
+            --doux: #93a4c3;
+            --accent: #5eead4;
+            --succes: #34d399;
+            --echec: #f87171;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            padding: 32px 20px 60px;
+            font-family: "Segoe UI", Roboto, Arial, sans-serif;
+            background: radial-gradient(circle at 15% -10%, #1f3a5f, #0f172a 60%);
+            color: var(--texte);
+        }
+        header {
+            max-width: 1080px;
+            margin: 0 auto 28px;
+        }
+        h1 {
+            margin: 0 0 8px;
+            font-size: 28px;
+            letter-spacing: -0.4px;
+        }
+        header p { margin: 0; color: var(--doux); font-size: 15px; }
+        .compteurs {
+            max-width: 1080px;
+            margin: 0 auto 24px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 14px;
+        }
+        .compteur {
+            background: var(--carte);
+            border: 1px solid #2b3a57;
+            border-radius: 12px;
+            padding: 16px 18px;
+        }
+        .compteur span {
+            display: block;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--doux);
+            margin-bottom: 6px;
+        }
+        .compteur strong { font-size: 26px; color: var(--accent); }
+        .panneau {
+            max-width: 1080px;
+            margin: 0 auto;
+            background: var(--carte);
+            border: 1px solid #2b3a57;
+            border-radius: 14px;
+            overflow: hidden;
+        }
+        .panneau h2 {
+            margin: 0;
+            padding: 16px 22px;
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--doux);
+            border-bottom: 1px solid #2b3a57;
+        }
+        table { width: 100%; border-collapse: collapse; font-size: 14px; }
+        th, td { padding: 12px 22px; text-align: left; }
+        th {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--doux);
+            border-bottom: 1px solid #2b3a57;
+        }
+        tbody tr + tr td { border-top: 1px solid #22304a; }
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .badge.succes { background: rgba(52, 211, 153, 0.16); color: var(--succes); }
+        .badge.echec { background: rgba(248, 113, 113, 0.16); color: var(--echec); }
+        footer {
+            max-width: 1080px;
+            margin: 22px auto 0;
+            color: var(--doux);
+            font-size: 12px;
+        }
+        code { color: var(--accent); }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Pilotage des déploiements</h1>
+    <p>Registre des livraisons alimenté par les scripts Bash de déploiement — port 8110</p>
+</header>
+
+<div class="compteurs">
+    <div class="compteur"><span>Livraisons</span><strong id="total">—</strong></div>
+    <div class="compteur"><span>Réussies</span><strong id="reussies">—</strong></div>
+    <div class="compteur"><span>Durée moyenne</span><strong id="duree">—</strong></div>
+</div>
+
+<div class="panneau">
+    <h2>Dernières livraisons</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Composant</th>
+            <th>Environnement</th>
+            <th>Version</th>
+            <th>Durée</th>
+            <th>Statut</th>
+        </tr>
+        </thead>
+        <tbody id="lignes">
+        <tr><td colspan="5">Chargement…</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<footer>Endpoints disponibles : <code>/api/registre/livraisons</code> · <code>/api/registre/synthese</code> · <code>/actuator/health</code></footer>
+
+<script>
+    function badge(statut) {
+        const classe = statut === 'SUCCES' ? 'succes' : 'echec';
+        return '<span class="badge ' + classe + '">' + statut + '</span>';
+    }
+
+    Promise.all([
+        fetch('/api/registre/livraisons').then(r => r.json()),
+        fetch('/api/registre/synthese').then(r => r.json())
+    ]).then(([livraisons, synthese]) => {
+        document.getElementById('total').textContent = synthese.livraisonsEnregistrees;
+        document.getElementById('reussies').textContent = synthese.livraisonsReussies;
+        document.getElementById('duree').textContent = synthese.dureeMoyenneSecondes + ' s';
+
+        document.getElementById('lignes').innerHTML = livraisons.map(l =>
+            '<tr><td>' + l.composant + '</td><td>' + l.environnement + '</td><td>' + l.version +
+            '</td><td>' + l.dureeSecondes + ' s</td><td>' + badge(l.statut) + '</td></tr>'
+        ).join('');
+    }).catch(() => {
+        document.getElementById('lignes').innerHTML =
+            '<tr><td colspan="5">Impossible de charger les données.</td></tr>';
+    });
+</script>
+</body>
+</html>
